@@ -1,4 +1,4 @@
-package com.iamyasas.springbootbasicauthdemo.security;
+package com.iamyasas.springbootjwtauthdemo.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

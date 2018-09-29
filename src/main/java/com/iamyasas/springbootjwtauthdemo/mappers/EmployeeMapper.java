@@ -1,9 +1,9 @@
-package com.iamyasas.springbootbasicauthdemo.mappers;
+package com.iamyasas.springbootjwtauthdemo.mappers;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.iamyasas.springbootbasicauthdemo.models.Employee;
+import com.iamyasas.springbootjwtauthdemo.models.Employee;
 
 @Mapper
 public interface EmployeeMapper {

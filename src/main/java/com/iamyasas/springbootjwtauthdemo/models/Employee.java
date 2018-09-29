@@ -1,4 +1,4 @@
-package com.iamyasas.springbootbasicauthdemo.models;
+package com.iamyasas.springbootjwtauthdemo.models;
 
 public class Employee {
 	private int id;

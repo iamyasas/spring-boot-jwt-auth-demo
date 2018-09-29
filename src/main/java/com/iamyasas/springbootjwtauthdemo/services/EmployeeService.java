@@ -1,10 +1,10 @@
-package com.iamyasas.springbootbasicauthdemo.services;
+package com.iamyasas.springbootjwtauthdemo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iamyasas.springbootbasicauthdemo.mappers.EmployeeMapper;
-import com.iamyasas.springbootbasicauthdemo.models.Employee;
+import com.iamyasas.springbootjwtauthdemo.mappers.EmployeeMapper;
+import com.iamyasas.springbootjwtauthdemo.models.Employee;
 
 @Service
 public class EmployeeService {

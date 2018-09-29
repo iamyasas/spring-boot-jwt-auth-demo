@@ -1,4 +1,4 @@
-package com.iamyasas.springbootbasicauthdemo.security;
+package com.iamyasas.springbootjwtauthdemo.security;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

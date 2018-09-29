@@ -1,4 +1,4 @@
-package com.iamyasas.springbootbasicauthdemo.controllers;
+package com.iamyasas.springbootjwtauthdemo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.iamyasas.springbootbasicauthdemo.models.Employee;
-import com.iamyasas.springbootbasicauthdemo.services.EmployeeService;
+
+import com.iamyasas.springbootjwtauthdemo.models.Employee;
+import com.iamyasas.springbootjwtauthdemo.services.EmployeeService;
 
 @RestController
 @RequestMapping("/employee")
