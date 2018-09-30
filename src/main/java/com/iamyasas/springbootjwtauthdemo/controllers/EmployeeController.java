@@ -25,7 +25,7 @@ public class EmployeeController {
 		return ResponseEntity.ok().body(service.getEmployees(name));
 	}
 	
-	@PreAuthorize("#employeeID == authentication.principal.username")
+	@PreAuthorize("#employeeID == authentication.principal")
 	@GetMapping("{employeeID}")
 	public ResponseEntity<Employee> getEmployee(@PathVariable String employeeID) {
 		return ResponseEntity.ok().body(service.getEmployee(Integer.parseInt(employeeID)));

@@ -6,25 +6,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import com.iamyasas.springbootjwtauthdemo.models.ApplicationUser;
+
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		if("user".equals(username)) {
-			return User.withUsername("user").password("{noop}pass").roles("USER").build();
-		}
-		else if ("admin".equals(username)) {
-			return User.withUsername("admin").password("{noop}pass").roles("ADMIN").build();
-		}
-		else if ("editor".equals(username)) {
-			return User.withUsername("editor").password("{noop}pass").roles("EDITOR").build();
-		}
-		else if ("1".equals(username)) {
-			return User.withUsername("1").password("{noop}pass").roles("USER").build();
-		}
-		else {
-			throw new UsernameNotFoundException("User name does not exist");
-		}
+		
+		ApplicationUser applicationUser = loadApplicationUserByName(username);
+		return User.withUsername(applicationUser.getUsername()).password(applicationUser.getPassword()).roles("USER").build();
+
+	}
+	
+	public ApplicationUser loadApplicationUserByName(String username) {
+		
+		return new ApplicationUser(username, "{noop}pass");
 	}
 }
