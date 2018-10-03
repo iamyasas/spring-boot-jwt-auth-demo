@@ -15,8 +15,8 @@ public class EmployeeService {
 	
 	public Employee[] getEmployees(String name) {
 		
-		String loggedInUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return mapper.getEmployees(name);
+		String loggedInUserID = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return mapper.getEmployees(name,loggedInUserID);
 	}
 
 	public Employee getEmployee(int employeeID) {

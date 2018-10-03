@@ -7,9 +7,10 @@
 		FROM ncell.employee e
 		INNER JOIN ncell.department d
 		ON e.department_id = d.id
+		WHERE e.id != #{loggedInUserID}
 		<if test="name != null">
 			<bind name="pattern" value="'%' + name + '%'"/>
-			WHERE e.name LIKE #{pattern}
+			AND e.name LIKE #{pattern}
 		</if>
 	</select>
 	
