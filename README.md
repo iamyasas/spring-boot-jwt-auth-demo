@@ -12,8 +12,8 @@ POST http://localhost:8080/login  -Authorization Basic base64encode(username:pas
 
 4) Access control(Authorization)
 
-  4.1) Annotation : @PreAuthorize("#employeeID == authentication.principal") 
+4.1) Annotation : @PreAuthorize("#employeeID == authentication.principal") 
   See getEmployee() in src/main/java/com/iamyasas/springbootjwtauthdemo/controllers/EmployeeController.java for an example.
-  
-  4.2) Programatically : SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+4.2) Programatically : SecurityContextHolder.getContext().getAuthentication().getPrincipal();
   See getEmployees() in src/main/java/com/iamyasas/springbootjwtauthdemo/services/EmployeeService.java for an example.
