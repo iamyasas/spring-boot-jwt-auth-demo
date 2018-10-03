@@ -27,7 +27,8 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		
 		Cookie tokenCookie = WebUtils.getCookie(request, SecurityConstants.COOKIE_NAME);
 		if (tokenCookie == null) {
-			chain.doFilter(request, response);
+			response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+			//chain.doFilter(request, response);
 			return;
 		}
 		

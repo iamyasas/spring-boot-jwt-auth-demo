@@ -13,6 +13,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,7 +24,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.iamyasas.springbootjwtauthdemo.security.SecurityConstants;
 
-import io.jsonwebtoken.Jwts;;
+import io.jsonwebtoken.Jwts;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	
@@ -33,9 +36,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-		String header = request.getHeader(SecurityConstants.HEADER_TYPE);
+		String header = request.getHeader(HttpHeaders.AUTHORIZATION);
 		if (header == null || !header.startsWith(SecurityConstants.HEADER_PREFIX)) {
-			throw new RuntimeException();
+			throw new AuthenticationCredentialsNotFoundException("No Authentication or Wrong header prefix");
 		}
 		String token = header.substring(SecurityConstants.HEADER_PREFIX.length());
 		String decodedToken = new String(Base64.getDecoder().decode(token));
@@ -56,6 +59,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		Cookie tokenCookie = new Cookie(SecurityConstants.COOKIE_NAME, token);
 		tokenCookie.setHttpOnly(true);
 		response.addCookie(tokenCookie);
+	}
+	
+	@Override
+	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		response.setHeader(HttpHeaders.WWW_AUTHENTICATE, SecurityConstants.BASIC_AUTHENTICATION_CHALLENGE);
 	}
 	
 }
